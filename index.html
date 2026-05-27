@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSave | O seu futuro começa aqui</title>
+    
+    <!-- Tailwind CSS para Estilização Rápida e Responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Configuração do Tailwind com as Cores da Marca -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ifood: {
+                            red: '#ea1d2c',
+                            dark: '#a1101d',
+                            light: '#fde8ea'
+                        },
+                        stay: {
+                            blue: '#1e3a8a',
+                            light: '#3b82f6',
+                            bg: '#f0f4f8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos Personalizados e Animações */
+        body {
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ea1d2c, #1e3a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        /* Esconder input number arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        /* Transições do Accordion (FAQ) */
+        .faq-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .faq-content.open {
+            max-height: 200px; /* Valor arbitrário grande o suficiente */
+            padding-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+
+    <!-- Navegação Fixa -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-bold text-ifood-red"><i class="fa-solid fa-piggy-bank"></i> iSave</span>
+                    <span class="text-xs font-semibold text-gray-400 border-l border-gray-300 pl-2 mt-1">by Stay</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#como-funciona" class="text-gray-600 hover:text-ifood-red font-medium transition">Como funciona</a>
+                    <a href="#vantagens" class="text-gray-600 hover:text-ifood-red font-medium transition">Vantagens</a>
+                    <a href="#simulador" class="text-gray-600 hover:text-ifood-red font-medium transition">Simulador</a>
+                    <a href="#faq" class="text-gray-600 hover:text-ifood-red font-medium transition">Dúvidas</a>
+                </div>
+                <div>
+                    <a href="#simulador" class="bg-ifood-red hover:bg-ifood-dark text-white px-5 py-2 rounded-full font-semibold transition shadow-md hover:shadow-lg">
+                        Começar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Secção Hero -->
+    <header class="hero-bg pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Texto da Hero -->
+                <div class="z-10">
+                    <div class="inline-block bg-ifood-light text-ifood-red px-4 py-1.5 rounded-full text-sm font-bold mb-6 border border-ifood-red/20">
+                        <i class="fa-solid fa-rocket mr-2"></i> Lançamento Exclusivo FoodLovers
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+                        O seu futuro começa com <span class="text-ifood-red">1 R$</span>. Literalmente.
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
+                        Conheça o <strong>iSave</strong>, a previdência privada por adesão da Stay. Sem burocracia, sem complicações e com recompensas para quem cuida do próprio amanhã.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#como-funciona" class="bg-stay-blue hover:bg-blue-900 text-white px-8 py-3.5 rounded-full font-bold text-center transition shadow-lg flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> Aderir em 4 Passos
+                        </a>
+                        <a href="#simulador" class="bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 px-8 py-3.5 rounded-full font-bold text-center transition shadow-sm flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator text-gray-500"></i> Simular Sonhos
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Imagem/Gráfico da Hero -->
+                <div class="relative z-10 lg:ml-auto">
+                    <!-- Elementos flutuantes abstratos -->
+                    <div class="relative w-full max-w-md mx-auto aspect-square">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-ifood-light to-blue-100 rounded-full blur-3xl opacity-70"></div>
+                        
+                        <!-- Cartão Principal -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 bg-white rounded-3xl shadow-2xl p-6 border border-gray-100 z-20">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="w-12 h-12 bg-stay-bg rounded-full flex items-center justify-center text-stay-blue">
+                                    <i class="fa-solid fa-wallet text-xl"></i>
+                                </div>
+                                <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">+15% Cashback</span>
+                            </div>
+                            <h3 class="text-gray-500 text-sm font-medium mb-1">O meu saldo iSave</h3>
+                            <div class="text-3xl font-extrabold text-gray-900 mb-4">R$ 4.520<span class="text-lg text-gray-400">,00</span></div>
+                            <div class="w-full bg-gray-100 rounded-full h-2 mb-2">
+                                <div class="bg-ifood-red h-2 rounded-full w-3/4"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 text-right">75% da meta da Viagem</p>
+                        </div>
+
+                        <!-- Badge Flutuante 1 -->
+                        <div class="absolute top-10 right-0 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-30 animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-ifood-light rounded-full flex items-center justify-center text-ifood-red">
+                                    <i class="fa-solid fa-heart"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-800">Sem Carência</p>
+                                    <p class="text-[10px] text-gray-500">Resgate quando quiser</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Badge Flutuante 2 -->
+                        <div class="absolute bottom-10 left-0 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-30 animate-bounce" style="animation-duration: 4s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-stay-blue">
+                                    <i class="fa-solid fa-coins"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-gray-800">Mínimo de 1 R$</p>
+                                    <p class="text-[10px] text-gray-500">O seu ritmo, as suas regras</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Secção: Os 3 Passos da Jornada -->
+    <section class="py-20 bg-white" id="como-funciona">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold mb-4">A Jornada do Seu Sonho</h2>
+                <p class="text-gray-600 text-lg">Sonhar é de graça. Planear é inteligente. Realizar é iSave. Transforme a imaginação numa meta real em 3 etapas simples.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                <!-- Linha conectora (Desktop) -->
+                <div class="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 bg-gray-200 z-0"></div>
+
+                <!-- Etapa 1 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white border-4 border-ifood-light rounded-full flex items-center justify-center mb-6 shadow-md transition group-hover:-translate-y-2 group-hover:border-ifood-red duration-300">
+                        <i class="fa-solid fa-cloud text-3xl text-gray-400 group-hover:text-ifood-red transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">1. Sonhar</h3>
+                    <p class="text-gray-600 text-sm">Qual é o seu sonho? Aquela viagem, o curso, a casa, a segurança da família. Tudo começa ao definir onde quer chegar.</p>
+                </div>
+
+                <!-- Etapa 2 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white border-4 border-blue-100 rounded-full flex items-center justify-center mb-6 shadow-md transition group-hover:-translate-y-2 group-hover:border-stay-light duration-300">
+                        <i class="fa-solid fa-chart-line text-3xl text-gray-400 group-hover:text-stay-light transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">2. Entender</h3>
+                    <p class="text-gray-600 text-sm">Transformamos esse sonho em números. Veja como as suas contribuições mais os incentivos o levam lá com o nosso Simulador.</p>
+                </div>
+
+                <!-- Etapa 3 -->
+                <div class="relative z-10 text-center group">
+                    <div class="w-24 h-24 mx-auto bg-white border-4 border-green-100 rounded-full flex items-center justify-center mb-6 shadow-md transition group-hover:-translate-y-2 group-hover:border-green-500 duration-300">
+                        <i class="fa-solid fa-check-double text-3xl text-gray-400 group-hover:text-green-500 transition duration-300"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">3. Agir</h3>
+                    <p class="text-gray-600 text-sm">Aderir no WhatsApp em 4 passos e receber Cashback imediato na sua primeira aplicação. Fazer acontecer nunca foi tão simples.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção: Vantagens e Sem Burocracia -->
+    <section class="py-20 bg-stay-bg" id="vantagens">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Mockup App/Chat -->
+                <div class="relative max-w-sm mx-auto lg:mx-0">
+                    <div class="bg-gray-800 rounded-[3rem] p-3 shadow-2xl border-4 border-gray-900 relative">
+                        <div class="absolute top-0 inset-x-0 h-6 bg-gray-900 rounded-t-[2.5rem] flex justify-center items-center">
+                            <div class="w-20 h-4 bg-black rounded-b-xl"></div>
+                        </div>
+                        <div class="bg-white h-[600px] rounded-[2rem] overflow-hidden flex flex-col pt-6">
+                            <div class="bg-[#075e54] text-white p-4 flex items-center gap-3">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-ifood-red font-bold">iS</div>
+                                <div>
+                                    <p class="font-bold text-sm">iSave by Stay</p>
+                                    <p class="text-[10px] text-gray-200">Conta oficial verificada</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 bg-[#efeae2] p-4 flex flex-col gap-3 overflow-y-auto" style="background-image: url('https://www.transparenttextures.com/patterns/az-subtle.png');">
+                                <!-- Chat Bubbles -->
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm text-sm self-start max-w-[85%]">
+                                    Olá, FoodLover! Pronto para cuidar do seu futuro financeiro? 🚀
+                                </div>
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm text-sm self-start max-w-[85%]">
+                                    Pode começar com apenas 1 R$. Qual valor deseja investir mensalmente?
+                                </div>
+                                <div class="bg-[#dcf8c6] p-3 rounded-xl rounded-tr-none shadow-sm text-sm self-end max-w-[85%]">
+                                    Vou começar com 50 R$!
+                                </div>
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm text-sm self-start max-w-[85%]">
+                                    Excelente escolha! 🥳 Como é a sua 1ª aplicação, acabou de ganhar 10% de Cashback da Stay!
+                                </div>
+                                <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm text-sm self-start max-w-[85%]">
+                                    Por favor, confirme os seus dados abaixo para assinarmos o termo.
+                                </div>
+                            </div>
+                            <div class="bg-[#f0f0f0] p-3 flex items-center gap-2">
+                                <div class="bg-white flex-1 rounded-full px-4 py-2 text-sm text-gray-400">Escreva uma mensagem...</div>
+                                <div class="w-10 h-10 bg-[#00a884] rounded-full flex items-center justify-center text-white"><i class="fa-solid fa-paper-plane"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Element -->
+                    <div class="absolute -right-12 bottom-12 bg-white p-4 rounded-2xl shadow-xl border border-gray-100">
+                        <p class="text-xs font-bold text-gray-500 mb-1">Tempo estimado:</p>
+                        <p class="text-lg font-extrabold text-stay-blue"><i class="fa-regular fa-clock"></i> 2 minutos</p>
+                    </div>
+                </div>
+
+                <!-- Vantagens Texto -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">4 passos. WhatsApp. Pronto.</h2>
+                    <p class="text-lg text-gray-600 mb-8">Esqueça a papelada, as filas no banco e as aplicações complexas. Criámos a previdência sem burocracia que você merecia.</p>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white shadow-sm rounded-full flex items-center justify-center text-ifood-red text-xl font-bold">1</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Flexibilidade Total</h4>
+                                <p class="text-gray-600 text-sm">Contribuição mínima de 1 R$. Pause ou altere a qualquer momento através da app. Sem letras pequenas.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white shadow-sm rounded-full flex items-center justify-center text-ifood-red text-xl font-bold">2</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Isenção de Taxas</h4>
+                                <p class="text-gray-600 text-sm">Zero taxa de carregamento. Cada cêntimo que você investe vai diretamente para a construção do seu futuro.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white shadow-sm rounded-full flex items-center justify-center text-ifood-red text-xl font-bold">3</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Sem Carência</h4>
+                                <p class="text-gray-600 text-sm">O dinheiro é seu. Teve um imprevisto? Pode solicitar resgates quando precisar, direto da palma da mão.</p>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-white shadow-sm rounded-full flex items-center justify-center text-ifood-red text-xl font-bold">4</div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-1">Atendimento Humanizado</h4>
+                                <p class="text-gray-600 text-sm">Fale diretamente com a equipa da Stay. Ajudamos a escolher entre VGBL ou PGBL para otimizar os seus impostos.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção: Gamificação / Cashback -->
+    <section class="py-20 bg-stay-blue text-white overflow-hidden relative">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-blue-800 opacity-50 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 rounded-full bg-blue-600 opacity-50 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="bg-blue-800 text-blue-200 px-4 py-1.5 rounded-full text-sm font-bold mb-4 inline-block">Gamificação Exclusiva</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">A Stay recompensa-o por cuidar de si mesmo.</h2>
+                <p class="text-blue-100 text-lg">Quanto mais constante você for, mais a Stay investe em conjunto consigo. Veja como a magia do Cashback progressivo funciona (válido para aplicações até 500 R$).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <!-- Card 1 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition transform hover:-translate-y-2">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fa-solid fa-gift text-2xl text-yellow-900"></i>
+                    </div>
+                    <h3 class="text-4xl font-extrabold mb-2 text-yellow-400">10%</h3>
+                    <p class="font-bold text-lg mb-2">de Cashback na Hora</p>
+                    <p class="text-blue-200 text-sm">Na sua 1ª aplicação. Começou, ganhou!</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition transform hover:-translate-y-2 mt-0 md:mt-8">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-orange-300 to-orange-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fa-solid fa-fire text-2xl text-orange-900"></i>
+                    </div>
+                    <h3 class="text-4xl font-extrabold mb-2 text-orange-400">+ 10%</h3>
+                    <p class="font-bold text-lg mb-2">de Cashback Extra</p>
+                    <p class="text-blue-200 text-sm">Ao manter a sua 3ª aplicação consecutiva.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition transform hover:-translate-y-2 mt-0 md:mt-16">
+                    <div class="w-16 h-16 mx-auto bg-gradient-to-br from-green-300 to-green-500 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fa-solid fa-sack-dollar text-2xl text-green-900"></i>
+                    </div>
+                    <h3 class="text-4xl font-extrabold mb-2 text-green-400">+ 15%</h3>
+                    <p class="font-bold text-lg mb-2">de Cashback Max</p>
+                    <p class="text-blue-200 text-sm">Na sua 6ª aplicação consecutiva. O hábito compensa!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção: Simulador de Sonhos (Interativo em JS) -->
+    <section class="py-20 bg-gray-50" id="simulador">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    
+                    <!-- Lado do Input -->
+                    <div class="p-8 md:p-12 bg-white">
+                        <h2 class="text-2xl font-bold mb-2">Simulador de Sonhos ✨</h2>
+                        <p class="text-gray-500 text-sm mb-8">Veja como as suas contribuições mais os incentivos da Stay (Cashbacks) se acumulam com o tempo.</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Com quanto quer começar por mês?</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                        <span class="text-gray-500 font-bold">R$</span>
+                                    </div>
+                                    <input type="number" id="monthly-input" value="100" min="1" max="10000" class="block w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-0 focus:border-stay-blue transition font-bold text-lg text-gray-800">
+                                </div>
+                                <p class="text-xs text-gray-400 mt-2">Pode ser a partir de 1 R$!</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">Durante quanto tempo?</label>
+                                <div class="flex items-center gap-4">
+                                    <input type="range" id="years-slider" min="1" max="30" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-stay-blue">
+                                    <span class="bg-gray-100 text-gray-800 font-bold px-4 py-2 rounded-lg min-w-[80px] text-center" id="years-display">10 Anos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lado do Resultado -->
+                    <div class="p-8 md:p-12 bg-stay-bg border-l border-gray-100 flex flex-col justify-center">
+                        <h3 class="text-sm font-bold text-stay-blue uppercase tracking-wider mb-2">O seu Futuro Projetado</h3>
+                        
+                        <div class="text-5xl font-extrabold text-gray-900 mb-6" id="result-total">
+                            R$ 0,00
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center text-sm border-b border-gray-200 pb-2">
+                                <span class="text-gray-600">Total investido por si:</span>
+                                <span class="font-bold text-gray-800" id="result-invested">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm border-b border-gray-200 pb-2">
+                                <span class="text-gray-600">Rendimento estimado:</span>
+                                <span class="font-bold text-green-600" id="result-yield">+ R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-sm pb-2">
+                                <span class="text-gray-600 flex items-center gap-1"><i class="fa-solid fa-gift text-ifood-red"></i> Bónus Cashback Stay:</span>
+                                <span class="font-bold text-ifood-red" id="result-cashback">+ R$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <p class="text-[10px] text-gray-400 mt-6 leading-tight">
+                            * Simulação baseada numa taxa de rentabilidade hipotética de 8% ao ano. O valor do cashback é limitado a aplicações de até 500 R$. Isto não é uma garantia de rentabilidade futura.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secção: FAQ / Objeções -->
+    <section class="py-20 bg-white" id="faq">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Ainda tem dúvidas? A gente explica.</h2>
+                <p class="text-gray-600">Fizemos as coisas de forma diferente para que não houvesse letras pequenas.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-gray-50">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 flex justify-between items-center focus:outline-none">
+                        Não tenho muito dinheiro para investir agora. O iSave é para mim?
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-gray-600 text-sm">
+                        <p>Absolutamente. O iSave tem uma contribuição mínima de apenas 1 R$. A ideia é que comece com o que cabe no seu bolso, crie o hábito de poupar e aumente o valor apenas quando (e se) puder, no seu próprio ritmo.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-gray-50">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 flex justify-between items-center focus:outline-none">
+                        A previdência não prende o meu dinheiro por anos?
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-gray-600 text-sm">
+                        <p>De forma alguma! O iSave não possui carência para resgate. O dinheiro é totalmente seu e, se surgir um imprevisto, pode aceder ao valor acumulado diretamente pela app, de forma rápida.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-gray-50">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 flex justify-between items-center focus:outline-none">
+                        E se eu me esquecer de pagar o boleto?
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-gray-600 text-sm">
+                        <p>O pagamento facilitado acontece todo o dia 20. Se houver algum imprevisto e atrasar, não há qualquer problema: não cobramos juros. Além disso, pode pausar as suas contribuições pelo aplicativo sem nenhuma burocracia.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border border-gray-200 rounded-2xl overflow-hidden bg-gray-50">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-gray-800 flex justify-between items-center focus:outline-none">
+                        Como funciona exatamente este Cashback?
+                        <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-gray-600 text-sm">
+                        <p>A Stay incentiva a sua constância. Funciona assim (para aplicações até 500 R$): Recebe 10% de volta na 1ª aplicação. Mantendo o pagamento em dia, recebe mais 10% na 3ª aplicação. Chegou à 6ª seguida? Recebe mais 15%. É dinheiro real injetado no seu futuro!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Footer -->
+    <section class="py-20 bg-ifood-red text-white text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-4xl font-extrabold mb-6">Pronto para dar o primeiro passo?</h2>
+            <p class="text-xl text-white/80 mb-10">O seu eu do futuro vai agradecer por ter tomado esta decisão hoje. Em 4 passos no WhatsApp, já está resolvido.</p>
+            <a href="https://stay-technologies.typeform.com/to/lKiyRmyH?typeform-source=ifamily2-0.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-ifood-red hover:bg-gray-100 px-10 py-4 rounded-full font-bold text-lg transition shadow-2xl hover:-translate-y-1">
+                <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Abrir a minha conta iSave
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Simples -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="mb-2">&copy; 2026 iSave. Uma parceria exclusiva iFood + Stay para os FoodLovers.</p>
+            <p class="text-xs text-gray-600">Material de comunicação interna sujeito a termos e condições da previdência privada contratada.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica Interativa (JavaScript) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- LÓGICA DO ACCORDION (FAQ) ---
+            const faqButtons = document.querySelectorAll('.faq-btn');
+            faqButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Fechar todos os outros
+                    document.querySelectorAll('.faq-content').forEach(el => {
+                        if (el !== content) {
+                            el.classList.remove('open');
+                            el.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
+                            el.previousElementSibling.classList.remove('text-ifood-red');
+                        }
+                    });
+
+                    // Alternar o atual
+                    content.classList.toggle('open');
+                    if (content.classList.contains('open')) {
+                        icon.style.transform = 'rotate(180deg)';
+                        this.classList.add('text-ifood-red');
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                        this.classList.remove('text-ifood-red');
+                    }
+                });
+            });
+
+            // --- LÓGICA DO SIMULADOR DE SONHOS ---
+            const monthlyInput = document.getElementById('monthly-input');
+            const yearsSlider = document.getElementById('years-slider');
+            const yearsDisplay = document.getElementById('years-display');
+            
+            const resTotal = document.getElementById('result-total');
+            const resInvested = document.getElementById('result-invested');
+            const resYield = document.getElementById('result-yield');
+            const resCashback = document.getElementById('result-cashback');
+
+            // Formatação de Moeda BRL (usado para R$) mas aplicável ao contexto visual
+            const formatCurrency = (value) => {
+                return value.toLocaleString('pt-PT', { style: 'currency', currency: 'BRL' }).replace('BRL', 'R$');
+            };
+
+            const calculateFuture = () => {
+                let monthly = parseFloat(monthlyInput.value) || 0;
+                let years = parseInt(yearsSlider.value);
+                let months = years * 12;
+                
+                // Limites de segurança e UI
+                if (monthly < 1) monthly = 1;
+                yearsDisplay.innerText = years === 1 ? '1 Ano' : `${years} Anos`;
+
+                // Constantes de cálculo
+                const annualInterestRate = 0.08; // 8% ao ano (estimativa didática)
+                const monthlyInterestRate = Math.pow(1 + annualInterestRate, 1/12) - 1;
+                
+                // Cálculo de Cashback da Stay (apenas para montantes até 500 R$)
+                const cashbackBase = Math.min(monthly, 500);
+                let totalCashback = 0;
+                if (months >= 1) totalCashback += cashbackBase * 0.10; // 1º mês
+                if (months >= 3) totalCashback += cashbackBase * 0.10; // 3º mês
+                if (months >= 6) totalCashback += cashbackBase * 0.15; // 6º mês
+
+                // Cálculo de Juros Compostos
+                let totalInvested = monthly * months;
+                let futureValue = 0;
+                
+                // Fórmula interativa mês a mês para adicionar o cashback ao bolo de rendimentos
+                for (let i = 1; i <= months; i++) {
+                    futureValue += monthly;
+                    
+                    // Adicionar cashback nos meses exatos para render juros também
+                    if (i === 1) futureValue += cashbackBase * 0.10;
+                    if (i === 3) futureValue += cashbackBase * 0.10;
+                    if (i === 6) futureValue += cashbackBase * 0.15;
+
+                    futureValue = futureValue * (1 + monthlyInterestRate);
+                }
+
+                const totalYield = futureValue - totalInvested - totalCashback;
+
+                // Atualização do Ecrã
+                resTotal.innerText = formatCurrency(futureValue);
+                resInvested.innerText = formatCurrency(totalInvested);
+                resYield.innerText = '+ ' + formatCurrency(Math.max(0, totalYield));
+                resCashback.innerText = '+ ' + formatCurrency(totalCashback);
+            };
+
+            // Event Listeners
+            monthlyInput.addEventListener('input', calculateFuture);
+            yearsSlider.addEventListener('input', calculateFuture);
+            
+            // Calculo Inicial
+            calculateFuture();
+        });
+    </script>
+</body>
+</html>
